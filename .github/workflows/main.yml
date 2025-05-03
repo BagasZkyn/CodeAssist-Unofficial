@@ -9,11 +9,6 @@ jobs:
     name: Build debug apk
     runs-on: ubuntu-latest
     steps:
-      - name: Cancel previous runs
-        uses: styfle/cancel-workflow-action@0.5.0
-        with:
-          access_token: ${{ github.token }}
-
       - uses: actions/checkout@v2
     
       - name: set up JDK 11
@@ -38,4 +33,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: apk-debug
-          path: app/build/outputs/apk/debu
+          path: app/build/outputs/apk/debug
