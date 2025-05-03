@@ -9,30 +9,30 @@ jobs:
     name: Build debug apk
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 # Updated to v4
+      - uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Add this line to fetch all history for proper caching
+          fetch-depth: 0
 
       - name: set up JDK 11
-        uses: actions/setup-java@v3 # Updated to v3
+        uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'temurin' # Changed from 'adopt' to 'temurin'
+          distribution: 'temurin'
           cache: gradle
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
       - name: Build debug apk
-        uses: gradle/gradle-build-action@v2 # Use the official Gradle Action
+        uses: gradle/gradle-build-action@v2
         with:
-          arguments: assembleDebug # Changed from assemble to assembleDebug
-          gradle-version: '8.4' # Specify Gradle version.  Important for consistency
-          cache-stores: 'build-gradle' # Enable caching
+          arguments: assembleDebug
+          gradle-version: '8.4'
+          cache-stores: 'build-gradle'
           cache-read-only: false
 
       - name: Upload debug apk
-        uses: actions/upload-artifact@v3 # Updated to v3
+        uses: actions/upload-artifact@v4 # Updated to v4
         with:
           name: apk-debug
           path: app/build/outputs/apk/debug
